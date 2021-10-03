@@ -35,3 +35,7 @@ body {
     padding:20px 40px;
     border-radius: 7px;
 }
+.error {
+    font-family: sans-serif;
+    color: rgb(255, 0, 0);
+}
