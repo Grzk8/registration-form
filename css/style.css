@@ -1,0 +1,37 @@
+body {
+    margin:0;
+    background-image: url("https://images.freeimages.com/images/large-previews/a16/either-way-nature-always-wins-1641459.jpg");
+}
+.title {
+    text-align: center;
+}
+.section-form {
+    width: 340px;
+    padding: 3rem;
+    margin:0 auto;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    background: #fff;
+    border-radius: 10px;
+}
+.form-row {
+    margin-bottom:20px;
+}
+.form-label {
+    display: block;
+    font-family: sans-serif;
+    margin-bottom:10px;
+}
+.form-control {
+    padding:8px;
+    width:300px;
+    border-radius: 3px;
+    border:1px solid #aaa;
+}
+.form-button {
+    background: rgb(7, 70, 12);
+    color: #fff;
+    border:0;
+    padding:20px 40px;
+    border-radius: 7px;
+}
