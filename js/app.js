@@ -37,4 +37,27 @@ $(function () {
         }
     }
 
+    const post = $("#post-code");
+    post.change(function(){
+
+        const postCode = $("#post-code").val();
+
+        if ((postCode != "") || (postCode.match(postCodeFormat))){
+            
+            const url = 'http://kodpocztowy.intami.pl/api/' + postCode;
+            let postData = [];
+
+            $.ajax({
+
+                url: url,
+                type: "GET",
+                dataType: "jsonp",
+                succes: function(data){
+                    postData = data;
+                    console.log(postData);
+                }
+            });
+        }
+    });
+
  });
