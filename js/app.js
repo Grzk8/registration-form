@@ -1,6 +1,7 @@
 $(function () {
 
-    $('.form-button').click(function(){
+    $('.form-button').click(function(event){
+        event.preventDefault();
         validForm();
     });
 
@@ -45,19 +46,30 @@ $(function () {
         if ((postCode != "") || (postCode.match(postCodeFormat))){
             
             const url = 'http://kodpocztowy.intami.pl/api/' + postCode;
-            let postData = [];
-
+            
             $.ajax({
 
                 url: url,
                 type: "GET",
-                dataType: "jsonp",
-                succes: function(data){
-                    postData = data;
-                    console.log(postData);
-                }
-            });
+                dataType: 'json',
+                
+            }).done(function(response){
+                addOptions(response);
+            })
         }
     });
+
+    function addOptions (response) {
+        for (let i=0; i< response.length; i++) {
+            const code = response[i];
+
+            const townOptions = $('<option>' + code.miejscowosc + '</option>');
+            const streetOptions = $('<option>' + code.ulica + '</option>');
+            const town = $("#town");
+            const street = $("#street");
+            town.append(townOptions);
+            street.append(streetOptions);
+        } 
+    }
 
  });
