@@ -1,6 +1,7 @@
 body {
     margin:0;
     background-image: url("https://images.freeimages.com/images/large-previews/a16/either-way-nature-always-wins-1641459.jpg");
+    background-size: cover;
 }
 .title {
     text-align: center;

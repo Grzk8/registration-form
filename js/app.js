@@ -63,8 +63,14 @@ $(function () {
         for (let i=0; i< response.length; i++) {
             const code = response[i];
 
-            const townOptions = $('<option>' + code.miejscowosc + '</option>');
-            const streetOptions = $('<option>' + code.ulica + '</option>');
+            const csltown = code.miejscowosc;
+            const cslstreet = code.ulica;
+
+            const str = [];
+            if (cslstreet != undefined) str.push(cslstreet);
+
+            const townOptions = $('<option>' + csltown + '</option>');
+            const streetOptions = $('<option>' + str + '</option>');
             const town = $("#town");
             const street = $("#street");
             town.append(townOptions);
