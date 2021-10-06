@@ -39,8 +39,8 @@ $(function () {
         if(formIsValid) {
             $('.section-form').hide()
             $('.send').show()
-        }
-    }
+        };
+    };
 
     const post = $("#post-code");
     post.change(function(){
@@ -48,7 +48,7 @@ $(function () {
         const postCode = $("#post-code").val();
 
         if ((postCode != "") || (postCode.match(postCodeFormat))){
-            
+
             const url = 'http://kodpocztowy.intami.pl/api/' + postCode;
             
             $.ajax({
@@ -59,29 +59,36 @@ $(function () {
                 
             }).done(function(response){
                 addOptions(response);
-            })
-        }
+            });
+        };
     });
 
     function addOptions (data) {
-        for (let i=0; i< data.length; i++) {
-            const code = data[i];
 
-            const csltown = code.miejscowosc;
-            const cslstreet = code.ulica;
-
-            const str = [];
-            
-            if (cslstreet != undefined) str.push(cslstreet);
-
-            const townOptions = $('<option>' + csltown + '</option>');
-            const streetOptions = $('<option>' + str + '</option>');
+        const townFilter = data.filter(function(el, i, x) {
+            return x.some(function(obj, j) {
+                return (obj.miejscowosc === el.miejscowosc && (x = j));
+            }) && i == x;
+        });
+        for (let i=0; i< townFilter.length; i++) {
+            const twn = townFilter[i];
+            const townOptions = $('<option>' + twn.miejscowosc + '</option>');
             const town = $("#town");
+            town.append(townOptions);  
+        };
+        
+        const streetFilter = data.filter(function(el, i, x) {
+            return x.some(function(obj, j) {
+                return (obj.ulica === el.ulica && (x = j));
+            }) && i == x;
+        });
+        for (let i=0; i< streetFilter.length; i++) {
+            const str = streetFilter[i];
+            const streetOptions = $('<option>' + str.ulica + '</option>');
             const street = $("#street");
-            town.append(townOptions);
             street.append(streetOptions);
-        } 
-    }
+        };
+    };
 
     $('.form-button').click(function(event){
         event.preventDefault();
@@ -90,6 +97,6 @@ $(function () {
 
     $('.go-back').click(function(){
         location.reload();
-    })
-    
+    });
+
  });
