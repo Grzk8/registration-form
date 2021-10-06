@@ -6,7 +6,7 @@ body {
 .title {
     text-align: center;
 }
-.section-form {
+.section-form, .send {
     width: 340px;
     padding: 3rem;
     margin:0 auto;
@@ -14,6 +14,10 @@ body {
     margin-bottom: 60px;
     background: #fff;
     border-radius: 10px;
+}
+
+.send {
+    display: none;
 }
 .form-row {
     margin-bottom:20px;
@@ -37,8 +41,21 @@ body {
     border-radius: 7px;
     display: block;
     margin: 0 auto;
+    cursor: pointer;
 }
 .error {
     font-family: sans-serif;
     color: rgb(255, 0, 0);
+}
+h1 {
+    font-family: sans-serif;
+    text-align: center;
+}
+.go-back {
+    background-image: url("https://images.squarespace-cdn.com/content/v1/5d487b7c8f1b720001c0140f/1572649082309-1SK82NT7JHTU7X2Q5JBJ/Data+Backup.png");
+    background-size: cover;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    cursor: pointer;
 }

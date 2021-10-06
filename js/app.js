@@ -1,9 +1,6 @@
 $(function () {
 
-    $('.form-button').click(function(event){
-        event.preventDefault();
-        validForm();
-    });
+    $('.send').hide()
 
     function validForm() {
         const firstname = $("#firstname").val();
@@ -17,24 +14,31 @@ $(function () {
         const postCodeFormat = /^\d\d-\d\d\d$/;
 
         $('.error').hide();
+        let formIsValid = false;
 
         if (firstname == ""){
             $("#firstname").after('<span class="error">Proszę wpisać imię!</span>')
         }
-        if (lastname == ""){
+        else if (lastname == ""){
             $("#lastname").after('<span class="error">Proszę wpisać nazwisko!</span>')
         }
-        if ((email == "") || (!email.match(mailFormat))){
+        else if ((email == "") || (!email.match(mailFormat))){
             $("#email").after('<span class="error">Proszę wpisać poprawny adres email!</span>')
         }
-        if ((phoneNumber == "") || (phoneNumber.length > 9) || (phoneNumber.length < 9)){
+        else if ((phoneNumber == "") || (phoneNumber.length > 9) || (phoneNumber.length < 9)){
             $("#phone-number").after('<span class="error">Proszę wpisać numer telefonu!</span>')
         }
-        if ((postCode == "") || (!postCode.match(postCodeFormat))){
+        else if ((postCode == "") || (!postCode.match(postCodeFormat))){
             $("#post-code").after('<span class="error">Proszę wpisać kod pocztowy!</span>')
         }
-        if (houseNumber == "") {
+        else if (houseNumber == "") {
             $("#house-number").after('<span class="error">Proszę wpisać numer domu!</span>')
+        }
+        else formIsValid = true;
+
+        if(formIsValid) {
+            $('.section-form').hide()
+            $('.send').show()
         }
     }
 
@@ -59,14 +63,15 @@ $(function () {
         }
     });
 
-    function addOptions (response) {
-        for (let i=0; i< response.length; i++) {
-            const code = response[i];
+    function addOptions (data) {
+        for (let i=0; i< data.length; i++) {
+            const code = data[i];
 
             const csltown = code.miejscowosc;
             const cslstreet = code.ulica;
 
             const str = [];
+            
             if (cslstreet != undefined) str.push(cslstreet);
 
             const townOptions = $('<option>' + csltown + '</option>');
@@ -78,4 +83,13 @@ $(function () {
         } 
     }
 
+    $('.form-button').click(function(event){
+        event.preventDefault();
+        validForm(); 
+    });
+
+    $('.go-back').click(function(){
+        location.reload();
+    })
+    
  });
