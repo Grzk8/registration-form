@@ -12,6 +12,8 @@ $(function () {
 
         const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         const postCodeFormat = /^\d\d-\d\d\d$/;
+        const phoneNumberFormat = /^[0-9\+]{8,13}$/;
+
 
         $('.error').hide();
         let formIsValid = false;
@@ -25,7 +27,7 @@ $(function () {
         else if ((email == "") || (!email.match(mailFormat))){
             $("#email").after('<span class="error">Proszę wpisać poprawny adres email!</span>')
         }
-        else if ((phoneNumber == "") || (phoneNumber.length > 9) || (phoneNumber.length < 9)){
+        else if ((phoneNumber == "") || (!phoneNumber.match(phoneNumberFormat))){
             $("#phone-number").after('<span class="error">Proszę wpisać numer telefonu!</span>')
         }
         else if ((postCode == "") || (!postCode.match(postCodeFormat))){
