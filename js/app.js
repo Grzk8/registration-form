@@ -86,7 +86,11 @@ $(function () {
         });
         for (let i=0; i< streetFilter.length; i++) {
             const str = streetFilter[i];
-            const streetOptions = $('<option>' + str.ulica + '</option>');
+
+            const st = [];
+            if (str.ulica != undefined) st.push(str.ulica); 
+
+            const streetOptions = $('<option>' + st + '</option>');
             const street = $("#street");
             street.append(streetOptions);
         };
